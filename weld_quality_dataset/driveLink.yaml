@@ -1,0 +1,4 @@
+train: C:\Users\debra\Desktop\Dataset\weld_quality_dataset\train\images
+val: C:\Users\debra\Desktop\Dataset\weld_quality_dataset\test\images
+nc: 5
+names: ['Crack', 'Excess Reinforcement', 'Porosity', 'Spatters', 'Welding seam']

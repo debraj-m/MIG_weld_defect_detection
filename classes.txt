@@ -1,0 +1,4 @@
+deposit
+stain
+pore
+discontinuity
