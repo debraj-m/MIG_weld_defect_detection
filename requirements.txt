@@ -1,0 +1,8 @@
+ultralytics>=8.0.0
+streamlit>=1.30.0
+Pillow>=9.0.0
+numpy>=1.23.0
+opencv-python>=4.7.0
+shutilwhich  # shutil is part of the Python standard library, no need to list it
+os-sys       # os is also part of the Python standard library, no need to list it
+random2      # random is part of stdlib; `random2` is a backport for older versions (if needed)
