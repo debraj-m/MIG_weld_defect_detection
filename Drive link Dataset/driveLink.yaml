@@ -1,4 +1,5 @@
-train: C:\Users\debra\Desktop\Dataset\weld_quality_dataset\train\images
-val: C:\Users\debra\Desktop\Dataset\weld_quality_dataset\test\images
+path: C:/Users/debra/Desktop/Dataset/Drive link Dataset  # This is the root folder
+train: train/images
+val: test/images
 nc: 5
 names: ['Crack', 'Excess Reinforcement', 'Porosity', 'Spatters', 'Welding seam']
