@@ -1,0 +1,202 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "pore",
+      "points": [
+        [
+          146,
+          38
+        ],
+        [
+          162,
+          53
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          163,
+          45
+        ],
+        [
+          182,
+          66
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          111,
+          48
+        ],
+        [
+          204,
+          125
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          261,
+          77
+        ],
+        [
+          302,
+          114
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          330,
+          71
+        ],
+        [
+          384,
+          113
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          436,
+          71
+        ],
+        [
+          515,
+          123
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          605,
+          95
+        ],
+        [
+          626,
+          117
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          712,
+          144
+        ],
+        [
+          766,
+          198
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          13,
+          69
+        ],
+        [
+          67,
+          149
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          547,
+          100
+        ],
+        [
+          578,
+          139
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          701,
+          102
+        ],
+        [
+          727,
+          129
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          36,
+          104
+        ],
+        [
+          51,
+          119
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "25_191",
+  "imageData": "",
+  "imageHeight": 199,
+  "imageWidth": 777
+}

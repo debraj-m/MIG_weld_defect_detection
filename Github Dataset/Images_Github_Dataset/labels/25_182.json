@@ -1,0 +1,234 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "deposit",
+      "points": [
+        [
+          88,
+          44
+        ],
+        [
+          200,
+          117
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          4,
+          68
+        ],
+        [
+          40,
+          127
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          558,
+          109
+        ],
+        [
+          590,
+          127
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          739,
+          114
+        ],
+        [
+          786,
+          173
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          242,
+          76
+        ],
+        [
+          264,
+          100
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          432,
+          60
+        ],
+        [
+          505,
+          107
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          553,
+          83
+        ],
+        [
+          569,
+          101
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          622,
+          73
+        ],
+        [
+          660,
+          110
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          732,
+          69
+        ],
+        [
+          748,
+          91
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          174,
+          121
+        ],
+        [
+          188,
+          134
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          206,
+          133
+        ],
+        [
+          224,
+          144
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          195,
+          47
+        ],
+        [
+          242,
+          85
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          302,
+          58
+        ],
+        [
+          338,
+          100
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          358,
+          58
+        ],
+        [
+          397,
+          97
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "25_182",
+  "imageData": "",
+  "imageHeight": 192,
+  "imageWidth": 787
+}

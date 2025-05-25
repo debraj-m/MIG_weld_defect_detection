@@ -1,0 +1,154 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          7,
+          69
+        ],
+        [
+          92,
+          159
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          134,
+          70
+        ],
+        [
+          175,
+          102
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          481,
+          115
+        ],
+        [
+          551,
+          166
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          669,
+          116
+        ],
+        [
+          698,
+          155
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          641,
+          102
+        ],
+        [
+          666,
+          129
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          437,
+          79
+        ],
+        [
+          464,
+          117
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          337,
+          78
+        ],
+        [
+          383,
+          117
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          199,
+          64
+        ],
+        [
+          285,
+          115
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          736,
+          82
+        ],
+        [
+          765,
+          173
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "25_45",
+  "imageData": "",
+  "imageHeight": 193,
+  "imageWidth": 770
+}

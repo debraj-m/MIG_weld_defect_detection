@@ -1,0 +1,74 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          7,
+          52
+        ],
+        [
+          50,
+          136
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          132,
+          68
+        ],
+        [
+          271,
+          159
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          62,
+          80
+        ],
+        [
+          127,
+          133
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          747,
+          105
+        ],
+        [
+          779,
+          168
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "25_140",
+  "imageData": "",
+  "imageHeight": 185,
+  "imageWidth": 781
+}

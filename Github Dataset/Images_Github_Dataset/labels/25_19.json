@@ -1,0 +1,138 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "deposit",
+      "points": [
+        [
+          6,
+          4
+        ],
+        [
+          120,
+          180
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "stain",
+      "points": [
+        [
+          240,
+          132
+        ],
+        [
+          283,
+          173
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "deposit",
+      "points": [
+        [
+          386,
+          89
+        ],
+        [
+          467,
+          172
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          667,
+          104
+        ],
+        [
+          683,
+          122
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          683,
+          112
+        ],
+        [
+          701,
+          133
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "pore",
+      "points": [
+        [
+          677,
+          129
+        ],
+        [
+          696,
+          154
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          750,
+          144
+        ],
+        [
+          786,
+          199
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "discontinuity",
+      "points": [
+        [
+          25,
+          172
+        ],
+        [
+          93,
+          226
+        ]
+      ],
+      "group_id": "null",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "25_19",
+  "imageData": "",
+  "imageHeight": 229,
+  "imageWidth": 799
+}

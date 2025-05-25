@@ -1,3 +1,4 @@
+#Splites the image into train and validation sets, moves them to respective folders
 import os
 import random
 import shutil
