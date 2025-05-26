@@ -5,7 +5,7 @@ model = YOLO('yolov8n.pt')
 
 # Train the model using your custom dataset
 model.train(
-    data='weld_defect.yaml',
+    data=r'C:\Users\debra\Desktop\Dataset\Drive link Dataset\driveLink.yaml',
     epochs=10,
     imgsz=640,
     batch=16
