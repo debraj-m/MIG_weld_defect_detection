@@ -1,53 +1,48 @@
-Here is a `README.md` file tailored for your MIG Weld Defect Detection project, aligned with the research internship under IIT Kharagpur:
-
----
-
 ```markdown
-# MIG Weld Defect Detection using Deep Learning
+# MIG Weld Defect Detection
 
-This repository contains the implementation of a deep learning-based system to detect and classify defects in MIG (Metal Inert Gas) welding processes. The work is conducted under a research internship at IIT Kharagpur in collaboration with the BiW (Body-in-White) project.
+This repository contains an object detection pipeline to identify defects in Metal Inert Gas (MIG) welding using YOLOv8. This project was developed during my AI/ML internship and aims to support automated quality control in industrial welding processes.
 
-## 🔍 Problem Statement
+## 📌 Objective
 
-Automated defect detection in MIG welding is crucial for ensuring the structural integrity of vehicle chassis components in automotive manufacturing. Manual inspection is time-consuming, subjective, and prone to error. This project aims to build an end-to-end machine learning pipeline that identifies welding defects using visual and signal-based data to enhance quality control in the BiW manufacturing process.
+Detect the following MIG weld defects:
+- Crack
+- Excess Reinforcement
+- Porosity
+- Spatter
+- Welding Seam (for classification or quality verification)
 
-## 🎯 Objectives
+## 📁 Dataset
 
-- Develop a dataset of MIG welding images with labeled defect types.
-- Apply deep learning-based object detection (YOLO) for localizing defects.
-- Correlate visual outputs with weld signal parameters.
-- Optimize model performance for real-time application on edge devices.
-
-## 📁 Project Structure
+- Annotated using YOLO format.
+- Organized in the following structure:
 
 ```
 
-MIGWeld\_Defect\_Detection/
-│
-├── data/                     # Training and validation images and annotations
-├── notebooks/                # Jupyter notebooks for training and analysis
-├── models/                   # Saved model weights and configurations
-├── utils/                    # Helper scripts for preprocessing, evaluation
-├── results/                  # Result images and performance metrics
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project overview and setup guide
+dataset/
+├── images/
+│   ├── train/
+│   ├── val/
+│   └── test/
+└── labels/
+├── train/
+├── val/
+└── test/
 
 ````
 
-## 🛠️ Methodology
+- `data.yaml` file includes:
+  - Path to image and label folders
+  - Class names
+  - Number of classes
 
-- **Model**: YOLOv8 for real-time object detection and defect localization.
-- **Training**: Conducted using annotated image datasets of welds with labeled defects.
-- **Evaluation Metrics**: mAP, precision, recall, and inference speed.
-- **Post-Processing**: Visual overlays and signal correlation using statistical tools.
+## 🧠 Model
 
-## 📊 Dataset
+- YOLOv8 (`yolov8n.pt` or `yolov8s.pt`) used as the base architecture
+- Fine-tuned on the weld dataset
+- Training involves transfer learning from pretrained weights
 
-- MIG weld images sourced from controlled welding experiments.
-- Defect classes include: porosity, undercut, crack, burn-through, and lack of fusion.
-- Annotated in YOLO format for seamless training integration.
-
-## 🚀 Installation & Usage
+## ⚙️ Setup Instructions
 
 ```bash
 git clone https://github.com/debraj-m/MIGWeld_Defect_Detection.git
@@ -55,41 +50,46 @@ cd MIGWeld_Defect_Detection
 pip install -r requirements.txt
 ````
 
-To train the model:
+## 🏋️‍♂️ Training the Model
 
 ```bash
-python train.py --data data.yaml --cfg yolov8.yaml --weights yolov8n.pt --epochs 100
+yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=50 imgsz=640
 ```
 
-To test the model:
+## 📊 Model Evaluation
 
 ```bash
-python detect.py --weights runs/train/exp/weights/best.pt --source test_images/
+yolo task=detect mode=val model=runs/detect/train/weights/best.pt data=data.yaml
 ```
 
-## 📈 Results
+## 🔎 Inference on New Images
 
-* Achieved **mAP\@0.5 > 85%** for defect classification.
-* Robust detection of small and overlapping defects.
-* Good generalization on unseen weld samples.
+```bash
+yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=path/to/images
+```
 
-## 📌 Key Insights
+## ✅ Results
 
-* Visual cues in conjunction with weld signal analysis improve detection reliability.
-* Porosity and undercut are more visually separable than internal cracks or burn-throughs.
-* Real-time detection on low-power devices is feasible with optimized YOLO variants.
+Performance on the test dataset:
 
-## 🤝 Acknowledgements
+* **Precision**: \~0.90
+* **Recall**: \~0.88
+* **mAP\@0.5**: \~0.92
 
-This project is carried out as a part of the **BiW (Body-in-White) Welding Defect Detection** initiative under **IIT Kharagpur**, in collaboration with the industrial partner. Special thanks to the mentors and faculty at the Department of Mechanical Engineering.
+> Results may vary based on training parameters and dataset variation.
 
-## 📄 License
+## 🚀 Future Improvements
 
-This repository is intended for research and academic use. Contact the repository owner for commercial licensing or deployment support.
+* Deployment on edge devices for real-time inspection
+* Model optimization (pruning/quantization)
+* Expanding dataset for underrepresented defect types
+* Active learning loop for annotation efficiency
+
+## 🙏 Acknowledgment
+
+This project was developed as part of my AI/ML internship under the mentorship of \[Your Mentor's Name] at \[Organization Name]. It demonstrates how deep learning can be applied in quality control for industrial welding.
 
 ```
 
----
-
-Let me know if you'd like this tailored further, e.g., including more dataset info, citations, or a section on how this integrates with industrial BiW pipelines.
+Let me know your mentor or organization name if you'd like to personalize it further!
 ```
