@@ -23,7 +23,7 @@ def print_structure(root, max_files=5):
     return "\n".join(lines)
 
 # Set your dataset path here
-dataset_path = r"C:\Users\debra\Desktop\weld-dataset"
+dataset_path = r"C:\Users\debra\Desktop\Dataset\Drive_Dataset_Annotated"
 output_text = print_structure(dataset_path)
 
 # Save to a text file
