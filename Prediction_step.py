@@ -1,81 +1,65 @@
-from ultralytics import YOLO
 import cv2
 import numpy as np
+from ultralytics import YOLO
 import os
-from PIL import Image
 
-# Load Models
-plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weldingPlate.pt")     # Plate detection model
-defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\welddefect.pt")      # Weld defect model
-
-# Create output directory
-os.makedirs("outputs", exist_ok=True)
-
-def rotate_to_horizontal(image, box):
-    """
-    Rotates the cropped plate to be horizontally aligned
-    based on its bounding box.
-    """
-    x1, y1, x2, y2 = map(int, box)
-
-    crop = image[y1:y2, x1:x2]
-
-    # Convert to grayscale and use Canny to find edges
-    gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(gray, 50, 150)
-
-    # Detect lines with Hough Transform
-    lines = cv2.HoughLines(edges, 1, np.pi / 180, 100)
-    angle = 0
-    if lines is not None:
-        for rho, theta in lines[0]:
-            angle = np.rad2deg(theta) - 90
-            break  # use the first line only
-
-    # Rotate image to fix alignment
-    (h, w) = crop.shape[:2]
-    center = (w // 2, h // 2)
-    M = cv2.getRotationMatrix2D(center, angle, 1.0)
-    aligned = cv2.warpAffine(crop, M, (w, h), flags=cv2.INTER_LINEAR)
-
-    return aligned
+# Load the models
+plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weldingPlate.pt")
+defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\welddefect.pt")
 
 def detect_and_process(image_path):
     # Load image
     img = cv2.imread(image_path)
 
-    # --- Stage 1: Detect Weld Plate ---
-    results = plate_model(img)
-    boxes = results[0].boxes.xyxy.cpu().numpy()
+    # Step 1: Detect weld plate
+    plate_results = plate_model.predict(image_path, save=False, conf=0.5)
 
-    if len(boxes) == 0:
+    if not plate_results or not plate_results[0].boxes:
         print("❌ No weld plate detected.")
         return
 
-    # Assume largest box is the weld plate
-    areas = [(x2 - x1) * (y2 - y1) for x1, y1, x2, y2 in boxes]
-    largest_idx = np.argmax(areas)
-    plate_box = boxes[largest_idx]
+    boxes = plate_results[0].boxes.xyxy.cpu().numpy()
+    classes = plate_results[0].boxes.cls.cpu().numpy()
 
-    # Rotate and crop plate
-    cropped_plate = rotate_to_horizontal(img, plate_box)
+    aligned = None
+    for box, cls in zip(boxes, classes):
+        if int(cls) == 0:  # Class 0 = weld plate
+            x1, y1, x2, y2 = map(int, box)
+            cropped = img[y1:y2, x1:x2]
 
-    # Save for visual confirmation
-    plate_path = "outputs/aligned_plate.jpg"
-    cv2.imwrite(plate_path, cropped_plate)
-    print(f"✅ Cropped & aligned plate saved to {plate_path}")
+            # Step 2: Rotate if vertical
+            h, w = cropped.shape[:2]
+            if h > w:
+                aligned = cv2.rotate(cropped, cv2.ROTATE_90_CLOCKWISE)
+                print("🔄 Rotated image for horizontal alignment.")
+            else:
+                aligned = cropped
+            break
 
-    # --- Stage 2: Detect Defects ---
-    defect_results = defect_model(cropped_plate)
+    if aligned is None:
+        print("❌ No class 0 box found.")
+        return
 
-    # Save annotated result
-    defect_results[0].save(filename="outputs/defect_detection.jpg")
-    print("✅ Defect detection output saved to outputs/defect_detection.jpg")
+    # Step 3: Save cropped & aligned image
+    os.makedirs("outputs", exist_ok=True)
+    aligned_path = "outputs/aligned_plate.jpg"
+    cv2.imwrite(aligned_path, aligned)
+    print("✅ Cropped & aligned plate saved to", aligned_path)
 
-    # Save YOLO format predictions
-    defect_results[0].save_txt("outputs/defect_predictions.txt", save_conf=True)
+    # Step 4: Run weld defect detection
+    defect_results = defect_model.predict(
+        aligned_path,
+        save=True,
+        conf=0.1,
+        save_txt=True,
+        project="outputs",
+        name="labels"
+    )
 
-    print("✅ YOLO predictions saved to outputs/labels/")
+    print("✅ Defect detection output saved to outputs/labels")
 
-# Run on your image
-detect_and_process(r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_094459478.MP.jpg")
+
+if __name__ == "__main__":
+    # 🔁 Provide your image path here
+    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_100532807.MP.jpg"
+    detect_and_process(image_path)
