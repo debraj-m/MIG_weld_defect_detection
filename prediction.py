@@ -5,7 +5,7 @@ import os
 import cv2
 
 # Load your trained model
-model = YOLO(r'C:\Users\debra\Desktop\CODE\Dataset\Boundingbox.pt')  # Make sure best.pt is in the same directory or give full path
+model = YOLO(r'C:\Users\debra\Desktop\CODE\Dataset\weldingPlate.pt')  # Make sure best.pt is in the same directory or give full path
 
 # Path to your input image
 image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_094459478.MP.jpg"  # <-- Change to your image path
@@ -13,7 +13,7 @@ img=cv2.resize(cv2.imread(image_path),(640,640))
 # Run prediction
 results = model.predict(
     source=[img],
-    conf=0.25,
+    conf=0.1,
     save=True,
     save_txt=True,
     imgsz=640,

@@ -61,5 +61,5 @@ def detect_and_process(image_path):
 
 if __name__ == "__main__":
     # 🔁 Provide your image path here
-    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_100532807.MP.jpg"
+    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_104231099.jpg"
     detect_and_process(image_path)
