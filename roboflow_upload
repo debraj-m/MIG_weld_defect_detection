@@ -1,0 +1,28 @@
+import os
+import zipfile
+from roboflow import Roboflow
+
+# CONFIGURE THESE
+dataset_dir = r"C:\Users\debra\Desktop\CODE\Dataset\Drive_Dataset_Annotated"  # Path to your dataset folder
+project_name = "dldv2"  # Must be created on Roboflow web first
+workspace = "debrajm"  # Found in your Roboflow URL
+api_key = "WCNk9uoVTJzAEs4S3Waq"
+# Define the output path for the zip file
+zip_output_path = os.path.join(dataset_dir, "dataset_upload.zip")
+# ✅ STEP 1: Create a flat zip of images + labels
+with zipfile.ZipFile(zip_output_path, 'w') as zipf:
+    for subfolder in ["images", "labels"]:
+        folder_path = os.path.join(dataset_dir, subfolder)
+        for file in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, file)
+            arcname = file  # put at root level inside ZIP
+            zipf.write(file_path, arcname)
+
+print("✅ ZIP created:", zip_output_path)
+
+# ✅ STEP 2: Upload using Roboflow Python API
+rf = Roboflow(api_key=api_key)
+project = rf.workspace(workspace).project(project_name)
+project.version(1).upload(zip_output_path)
+
+print("✅ Uploaded to Roboflow successfully.")
