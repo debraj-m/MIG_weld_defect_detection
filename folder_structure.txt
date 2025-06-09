@@ -1,19 +1,6 @@
-|-- README.dataset.txt
-|-- README.roboflow.txt
-|-- data.yaml
-|-- roboflow_upload.zip
-|-- train/
-    |-- images/
-        |-- 04ff146c-13216e9b-c11_jpg.rf.07a1259bf56b5fe920d9d3b8f37240e9.jpg
-        |-- 04ff146c-13216e9b-c11_jpg.rf.0e7d1af02c460b5076cdff1250c08b91.jpg
-        |-- 04ff146c-13216e9b-c11_jpg.rf.180593fe419abbe82b84ead9b2f077bf.jpg
-        |-- 04ff146c-13216e9b-c11_jpg.rf.1953be29e0ab964595be9043e9166c4c.jpg
-        |-- 04ff146c-13216e9b-c11_jpg.rf.1accee6a9ce0542f783ddd6f0f07876b.jpg
-        |-- ... (757 more files)
-    |-- labels/
-        |-- 04ff146c-13216e9b-c11_jpg.rf.07a1259bf56b5fe920d9d3b8f37240e9.txt
-        |-- 04ff146c-13216e9b-c11_jpg.rf.0e7d1af02c460b5076cdff1250c08b91.txt
-        |-- 04ff146c-13216e9b-c11_jpg.rf.180593fe419abbe82b84ead9b2f077bf.txt
-        |-- 04ff146c-13216e9b-c11_jpg.rf.1953be29e0ab964595be9043e9166c4c.txt
-        |-- 04ff146c-13216e9b-c11_jpg.rf.1accee6a9ce0542f783ddd6f0f07876b.txt
-        |-- ... (757 more files)
+|-- 200905_161420_0000000008_CAM1_NG_0.jpg
+|-- 200905_161420_0000000008_CAM1_NG_0.json
+|-- 200905_161420_0000000008_CAM1_NG_0.yolo
+|-- 200905_161420_0000000008_CAM1_NG_1.jpg
+|-- 200905_161420_0000000008_CAM1_NG_1.json
+|-- ... (9061 more files)
