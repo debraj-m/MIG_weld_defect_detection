@@ -67,7 +67,7 @@ def detect_and_process(image_path):
     defect_results = defect_model.predict(
         weld_seam_path,
         save=True,
-        conf=0.25,
+        conf=0.26,
         save_txt=True,
         project="outputs",
         name="labels"
