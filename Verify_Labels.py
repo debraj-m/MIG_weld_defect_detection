@@ -1,3 +1,4 @@
+# Verify the existence of 'images' and 'labels' folders in a dataset directory
 import os
 
 # Set your dataset folder path

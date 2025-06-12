@@ -1,2 +1,0 @@
-weld_quality_dataset ------ Dataset from the drive link
-Images-----dataset from github link

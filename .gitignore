@@ -1,8 +1,8 @@
 .venv
-/images
 /.env
-/labels
-/Pictures from welding
-/runs
-client.html
-Drive_Dataset_Annotated
+.vscode
+Test_images
+Datasets
+weights
+
+

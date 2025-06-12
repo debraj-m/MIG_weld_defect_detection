@@ -1,0 +1,13 @@
+For Github Dataset:
+deposit
+stain
+pore
+discontinuity
+
+For Drive Dataset
+Excess Reinforcement
+crack
+pore
+spatter
+stain
+weld seam

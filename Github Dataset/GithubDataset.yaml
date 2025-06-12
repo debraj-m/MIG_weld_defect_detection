@@ -1,4 +1,0 @@
-train: C:/Users/debra/Desktop/Dataset/images/train
-val: C:/Users/debra/Desktop/Dataset/images/val
-nc: 4
-names: ['deposit', 'stain', 'pore', 'discontinuity']
