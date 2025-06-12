@@ -1,12 +1,13 @@
+# This script detects weld plates, extracts weld seams, and identifies defects using YOLO models.
 import cv2
 import numpy as np
 from ultralytics import YOLO
 import os
 
 # Load the models
-plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weldingPlate.pt")
-seam_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weld_seam.pt")  # NEW
-defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\Github_defect.pt")
+plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weldingPlate.pt")
+seam_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weld_seam.pt")  # NEW
+defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\welddefect_github.pt")
 
 def detect_and_process(image_path):
     # Load image
@@ -15,7 +16,16 @@ def detect_and_process(image_path):
     # Step 1: Detect weld plate
     plate_results = plate_model.predict(image_path, save=False, conf=0.5)
     if not plate_results or not plate_results[0].boxes:
-        print("❌ No weld plate detected.")
+        print("⚠️ No weld plate detected. Running defect detection on the original image.")
+        defect_results = defect_model.predict(
+            image_path,
+            save=True,
+            conf=0.25,
+            save_txt=True,
+            project="outputs",
+            name="labels"
+        )
+        print("✅ Defect detection output saved to outputs/labels")
         return
 
     boxes = plate_results[0].boxes.xyxy.cpu().numpy()
@@ -67,7 +77,7 @@ def detect_and_process(image_path):
     defect_results = defect_model.predict(
         weld_seam_path,
         save=True,
-        conf=0.25,
+        conf=0.5,
         save_txt=True,
         project="outputs",
         name="labels"
@@ -76,5 +86,5 @@ def detect_and_process(image_path):
 
 
 if __name__ == "__main__":
-    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Pictures from welding\PXL_20250525_104231099.jpg"
+    image_path = r"C:\Users\debra\Downloads\welding-porosity.jpg"
     detect_and_process(image_path)
