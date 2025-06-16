@@ -7,7 +7,7 @@ import os
 # Load the models
 plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weldingPlate.pt")
 seam_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weld_seam.pt")  # NEW
-defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\welddefect_github.pt")
+defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\best (6).pt")
 
 def detect_and_process(image_path):
     # Load image
@@ -55,7 +55,7 @@ def detect_and_process(image_path):
         defect_results = defect_model.predict(
             weld_seam_path,
             save=True,
-            conf=0.25,
+            conf=0.1,
             save_txt=True,
             project="outputs",
             name="labels"
@@ -121,5 +121,5 @@ def detect_and_process(image_path):
 
 
 if __name__ == "__main__":
-    image_path = r"C:\Users\debra\Downloads\welding-porosity.jpg"
+    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Test_images\Experiment Photos\PXL_20250525_094459478.MP.jpg"
     detect_and_process(image_path)
