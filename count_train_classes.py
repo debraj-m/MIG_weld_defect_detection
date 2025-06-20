@@ -1,12 +1,15 @@
 import os
 from collections import defaultdict
 
-label_dir = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\labels"  # 👈 only the training set
+label_dir = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\labels"
+
 class_names = {
-    "0": "deposit",
-    "1": "discontinuity",
-    "2": "pore",
-    "3": "stain",
+    0: "Excess Reinforcement",
+    1: "crack",
+    2: "pore",
+    3: "spatter",
+    4: "stain",
+    5: "weld seam"
 }
 
 train_counts = defaultdict(int)
@@ -16,7 +19,7 @@ for file in os.listdir(label_dir):
         continue
     with open(os.path.join(label_dir, file), "r") as f:
         for line in f:
-            class_id = line.strip().split()[0]
+            class_id = int(line.strip().split()[0])  # 👈 convert to int
             train_counts[class_id] += 1
 
 print("📊 Class Count in Train Set Only:\n")

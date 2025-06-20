@@ -5,8 +5,8 @@ import shutil
 AUG_IMAGES_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Augmented\images"
 AUG_LABELS_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Augmented\labels"
 
-DEST_IMAGES_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\images"
-DEST_LABELS_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\labels"
+DEST_IMAGES_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\images"
+DEST_LABELS_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\labels"
 
 # Create destination folders if not exist
 os.makedirs(DEST_IMAGES_DIR, exist_ok=True)

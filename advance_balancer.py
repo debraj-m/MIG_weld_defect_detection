@@ -9,10 +9,10 @@ from albumentations import (
 )
 
 # 🔧 CONFIG
-CLASS_TARGET = [0, 1, 2, 3]  # Class IDs to balance
-TARGET_PER_CLASS = 18000     # Final count of each class's objects
-LABEL_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\labels"
-IMAGE_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\images"
+CLASS_TARGET = [0, 1, 2, 3, 4]  # Class IDs to balance
+TARGET_PER_CLASS = 5000   # Final count of each class's objects
+LABEL_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\labels"
+IMAGE_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\images"
 AUG_SAVE_DIR = r"C:\Users\debra\Desktop\CODE\Dataset\Augmented"
 
 # 📦 Setup output folders
