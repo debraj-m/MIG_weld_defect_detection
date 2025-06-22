@@ -6,7 +6,7 @@ import os
 # Load the models
 plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weldingPlate.pt")
 seam_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weld_seam.pt")
-defect_model = YOLO(r"C:\Users\debra\Downloads\best (7).pt")
+defect_model = YOLO(r"C:\Users\debra\Downloads\best (12).pt")
 
 def detect_and_process(image_path):
     # Load image

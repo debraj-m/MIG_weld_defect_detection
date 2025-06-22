@@ -1,15 +1,13 @@
 import os
 from collections import defaultdict
 
-label_dir = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Drive_Dataset\train\labels"
+label_dir = r"C:\Users\debra\Desktop\CODE\Dataset\Datasets\Github_Dataset\train\labels"
 
 class_names = {
-    0: "Excess Reinforcement",
-    1: "crack",
+    0: "deposit",
+    1: "discontinuity",
     2: "pore",
-    3: "spatter",
-    4: "stain",
-    5: "weld seam"
+    3: "stain",
 }
 
 train_counts = defaultdict(int)
