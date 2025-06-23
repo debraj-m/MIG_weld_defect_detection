@@ -5,5 +5,7 @@ Test_images
 Datasets
 weights
 outputs
+test_output
+filtered_results
 
 

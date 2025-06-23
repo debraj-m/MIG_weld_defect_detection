@@ -3,12 +3,11 @@ import numpy as np
 from ultralytics import YOLO
 import os
 
-# Load the models
+# Load models
 plate_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weldingPlate.pt")
-seam_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weld_seam.pt")
-defect_model = YOLO(r"C:\Users\debra\Downloads\best (12).pt")
+defect_model = YOLO(r"C:\Users\debra\Desktop\CODE\Dataset\weights\weldDefect_drive_highacc.pt")
 
-def detect_and_process(image_path):
+def crop_plate_and_detect_defects(image_path):
     # Load image
     img = cv2.imread(image_path)
     if img is None:
@@ -22,50 +21,10 @@ def detect_and_process(image_path):
     plate_boxes = plate_results[0].boxes if plate_results and plate_results[0].boxes is not None else None
 
     if not plate_boxes or len(plate_boxes) == 0:
-        print("⚠️ No weld plate detected. Trying weld seam detection directly on original image.")
-
-        # Try seam detection on the original image
-        seam_results = seam_model.predict(image_path, save=False, conf=0.3)
-        seam_boxes = seam_results[0].boxes if seam_results and seam_results[0].boxes is not None else None
-
-        if not seam_boxes or len(seam_boxes) == 0:
-            print("❌ No weld seam detected either. Running defect detection on original image.")
-            defect_model.predict(
-                image_path,
-                save=True,
-                conf=0.1,
-                save_txt=True,
-                project="outputs",
-                name="labels"
-            )
-            print("✅ Defect detection output saved to outputs/labels")
-            return
-
-        # Crop first weld seam (class 0)
-        for box, cls in zip(seam_results[0].boxes.xyxy.cpu().numpy(), seam_results[0].boxes.cls.cpu().numpy()):
-            if int(cls) == 0:
-                x1, y1, x2, y2 = map(int, box)
-                weld_seam = img[y1:y2, x1:x2]
-                weld_seam_path = "outputs/weld_seam.jpg"
-                cv2.imwrite(weld_seam_path, weld_seam)
-                print("✅ Weld seam cropped and saved to", weld_seam_path)
-
-                # Detect defects
-                defect_model.predict(
-                    weld_seam_path,
-                    save=True,
-                    conf=0.1,
-                    save_txt=True,
-                    project="outputs",
-                    name="labels"
-                )
-                print("✅ Defect detection output saved to outputs/labels")
-                return
-
-        print("❌ No class 0 weld seam box found.")
+        print("❌ No weld plate detected.")
         return
 
-    # Crop and align weld plate
+    # Step 2: Crop & align the first detected plate (class 0)
     for box, cls in zip(plate_boxes.xyxy.cpu().numpy(), plate_boxes.cls.cpu().numpy()):
         if int(cls) == 0:
             x1, y1, x2, y2 = map(int, box)
@@ -74,43 +33,22 @@ def detect_and_process(image_path):
             aligned = cv2.rotate(cropped, cv2.ROTATE_90_CLOCKWISE) if h > w else cropped
             aligned_path = "outputs/aligned_plate.jpg"
             cv2.imwrite(aligned_path, aligned)
-            print("✅ Cropped & aligned plate saved to", aligned_path)
-            break
-    else:
-        print("❌ No valid weld plate found.")
-        return
-
-    # Step 2: Detect weld seam from aligned plate
-    seam_results = seam_model.predict(aligned_path, save=False, conf=0.3)
-    seam_boxes = seam_results[0].boxes if seam_results and seam_results[0].boxes is not None else None
-
-    if not seam_boxes or len(seam_boxes) == 0:
-        print("❌ No weld seam detected.")
-        return
-
-    # Crop first weld seam box (class 0)
-    for box, cls in zip(seam_results[0].boxes.xyxy.cpu().numpy(), seam_results[0].boxes.cls.cpu().numpy()):
-        if int(cls) == 0:
-            x1, y1, x2, y2 = map(int, box)
-            weld_seam = aligned[y1:y2, x1:x2]
-            weld_seam_path = "outputs/weld_seam.jpg"
-            cv2.imwrite(weld_seam_path, weld_seam)
-            print("✅ Weld seam cropped and saved to", weld_seam_path)
+            print("✅ Cropped & aligned weld plate saved to:", aligned_path)
 
             # Step 3: Defect Detection
             defect_model.predict(
-                weld_seam_path,
+                aligned_path,
                 save=True,
-                conf=0.1,
+                conf=0.05,
                 save_txt=True,
                 project="outputs",
-                name="labels"
+                name="defect_results"
             )
-            print("✅ Defect detection output saved to outputs/labels")
+            print("✅ Defect detection output saved to outputs/defect_results")
             return
 
-    print("❌ No class 0 weld seam box found in aligned plate.")
+    print("❌ No valid class 0 weld plate found.")
 
 if __name__ == "__main__":
-    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Test_images\Experiment Photos\PXL_20250525_104231099.jpg"
-    detect_and_process(image_path)
+    image_path = r"C:\Users\debra\Desktop\CODE\Dataset\Test_images\Experiment Photos\PXL_20250525_113332348.jpg"
+    crop_plate_and_detect_defects(image_path)
