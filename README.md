@@ -356,12 +356,44 @@ feature_extraction_params = {
 ```
 
 
+
 ## Comprehensive Visual Results & Metrics
 
-### Classifier Performance Visualizations (Generated)
+### Classifier Performance Visualizations
 
+#### 1. Enhanced Confusion Matrix
+![Confusion Matrix](results/classification_report_enhanced.png)
+*Confusion matrix for porosity vs blowhole classification*
 
-#### 1. Pore and Blowhole Example Images
+#### 2. ROC Curves
+![ROC Curves](results/roc_curves_enhanced.png)
+*ROC curves for classifier discrimination*
+
+#### 3. Precision-Recall Curves
+![Precision-Recall](results/precision_recall_curves.png)
+*Precision-Recall analysis for optimal threshold selection*
+
+#### 4. Feature Importance
+![Feature Importance](results/feature_importance.png)
+*Feature importance for porosity/blowhole classification*
+
+#### 5. Feature Correlation Matrix
+![Feature Correlation](results/feature_correlation_comprehensive.png)
+*Correlation analysis between extracted features*
+
+#### 6. Learning Curves
+![Learning Curves](results/learning_curves_analysis.png)
+*Training vs validation performance curves*
+
+#### 7. Class Distribution
+![Class Distribution](results/class_distribution.png)
+*Distribution of blowhole vs porosity in the dataset*
+
+#### 8. Performance Summary
+![Performance Summary](results/performance_summary.png)
+*Overall performance metrics summary*
+
+#### 9. Pore and Blowhole Example Images
 ![Pore Example](results/pore_example.png)
 *Example of a detected pore defect*
 
