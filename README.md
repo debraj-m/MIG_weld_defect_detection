@@ -1,5 +1,5 @@
 
-# MIG Weld Defect Detection
+# Weld Defect Detection
 
 **Dataset and Weights Download:**
 
@@ -87,60 +87,8 @@ Since porosity and blowholes are visually similar (both being gas-related defect
 **Key Distinguishing Characteristics:**
 - **Porosity**: Higher circularity, smaller area, more uniform intensity
 - **Blowhole**: Lower circularity, larger area, more irregular shape patterns
-
-### **Current Binary Classification Setup**
-```yaml
-# Actual data.yaml configuration for porosity/blowhole classifier
-nc: 2  # number of classes  
-names:
-  0: blowhole    # lowercase as per actual data
-  1: porosity    # lowercase as per actual data
-
-# Dataset: 9,906 samples with balanced distribution
 ```
-
-
-## Project Pipeline (Step-by-Step)
-
-### Stage 1: Data Preparation & Feature Engineering
-```bash
-# Extract geometric and intensity features from annotated defects
-python src/extract_defect_features.py
-# Output: defect_features_balanced.csv with 16 features per defect
 ```
-
-### Stage 2: ML Model Training
-```bash
-# Fit scaler and label encoder for feature normalization
-python scripts/fit_scaler_labelencoder.py
-
-# Train Random Forest classifier for porosity/blowhole disambiguation  
-python src/train_classifier.py
-# Output: Trained Random Forest classifier + evaluation metrics
-```
-
-### Stage 3: Hierarchical Detection Pipeline
-```bash
-# Run complete detection pipeline
-python src/prediction_final.py
-# Pipeline: Plate → Seam → Defects → Random Forest Classification → Final Output
-```
-
-### Stage 4: Comprehensive Evaluation & Metrics
-```bash
-# Generate detailed classifier metrics and visualizations
-python scripts/comprehensive_classifier_metrics.py
-
-# Generate enhanced metrics visuals  
-python scripts/enhanced_metrics_visuals.py
-
-# Evaluate YOLO weights performance
-python scripts/evaluate_yolo_weights.py
-
-# Run all metrics at once
-python scripts/run_all_metrics.py
-```
-
 ## Classifier Performance Metrics
 
 Our Random Forest classifier achieves **exceptional accuracy** in distinguishing between porosity and blowholes:
@@ -155,26 +103,6 @@ Our Random Forest classifier achieves **exceptional accuracy** in distinguishing
 - **F1-Score (Blowhole)**: **97.70%**
 - **Matthews Correlation**: **0.954** (Excellent correlation quality)
 - **Cohen's Kappa**: **0.954** (Near-perfect agreement)
-
-### Model Insights:
-```
-Dataset Overview:
-• Total Samples: 9,906 defect instances
-• Class Distribution: blowhole vs porosity (balanced)
-• Feature Dimensionality: 16 geometric and intensity features
-• Training Algorithm: Gradient Boosting Classifier (optimized)
-```
-
-### Confusion Matrix Analysis (Actual Results):
-```
-                    Predicted
-Actual           blowhole  porosity   Total
-blowhole           4,864      110    4,974
-porosity            118    4,814    4,932
-Total              4,982    4,924    9,906
-
-Accuracy: 97.70% | Misclassification: 2.30%
-```
 
 ### Feature Importance Ranking (Validated):
 Based on comprehensive analysis of your actual model:
@@ -249,19 +177,12 @@ MIGWeld_Defect_Detection/
 ## Dataset Details
 
 ### Dataset Characteristics
-- **Total Images**: [Specify number of images]
-- **Annotation Format**: YOLO bounding box format
+- **Annotation Format**: YOLO bounding box format (.txt files)
 - **Image Resolution**: 640x640 pixels (resized during training)
 - **Data Split**: 70% Training / 20% Validation / 10% Testing
 - **Augmentation**: Applied during training (rotation, scaling, color adjustment)
 
 ## Quick Start Guide
-
-### Prerequisites
-- Python 3.8 or higher
-- CUDA-compatible GPU (recommended for training)
-- 8GB+ RAM
-- 10GB+ free disk space
 
 ### Installation
 
@@ -352,29 +273,9 @@ feature_extraction_params = {
 ![Confusion Matrix](results/classification_report_enhanced.png)
 *Confusion matrix for porosity vs blowhole classification*
 
-#### 2. ROC Curves
-![ROC Curves](results/roc_curves_enhanced.png)
-*ROC curves for classifier discrimination*
-
-#### 3. Precision-Recall Curves
-![Precision-Recall](results/precision_recall_curves.png)
-*Precision-Recall analysis for optimal threshold selection*
-
-#### 4. Feature Importance
-![Feature Importance](results/feature_importance.png)
-*Feature importance for porosity/blowhole classification*
-
-#### 5. Feature Correlation Matrix
+#### 2. Feature Correlation Matrix
 ![Feature Correlation](results/feature_correlation_comprehensive.png)
 *Correlation analysis between extracted features*
-
-#### 6. Learning Curves
-![Learning Curves](results/learning_curves_analysis.png)
-*Training vs validation performance curves*
-
-#### 7. Class Distribution
-![Class Distribution](results/class_distribution.png)
-*Distribution of blowhole vs porosity in the dataset*
 
 #### 8. Performance Summary
 ![Performance Summary](results/performance_summary.png)
@@ -419,16 +320,7 @@ For a robust evaluation, track the following metrics:
 - **Confusion Matrix**: Visualize true/false positives/negatives per class.
 - **Inference Speed**: Time per image/frame (ms).
 - **Class-wise Metrics**: Precision, recall, and mAP for each defect type.
-
-> **Tip:** Add your own results and update the table below after each experiment.
-
-### Training Results
-- **Training Duration**: ~2-4 hours (depending on hardware)
-- **Best Epoch**: Typically around epoch 80-100
-- **Model Size**: 
-  - YOLOv8n: ~6MB
-  - YOLOv8s: ~22MB
-
+- 
 ### Evaluation Metrics
 
 | Metric | YOLOv8n | YOLOv8s |
@@ -438,86 +330,6 @@ For a robust evaluation, track the following metrics:
 | **mAP@0.5** | 0.91 | 0.94 |
 | **mAP@0.5:0.95** | 0.67 | 0.72 |
 | **Inference Speed** | 2.1ms | 4.3ms |
-
-### **🎯 Binary Classification Performance (Porosity vs Blowhole)**
-```
-Class              Precision   Recall   F1-Score   Support
-blowhole           0.9762      0.9778   0.9770     4,974
-porosity           0.9778      0.9762   0.9770     4,932
-
-Macro Avg          0.9770      0.9770   0.9770     9,906
-Weighted Avg       0.9770      0.9770   0.9770     9,906
-
-Overall Accuracy: 97.70%
-```
-
-
-## Advanced Metrics & Analysis
-
-### Comprehensive Evaluation Suite
-
-Run all metrics generation with a single command:
-```bash
-python scripts/run_all_metrics.py
-```
-
-This will generate:
-- **Confusion Matrices**: Enhanced visualization with counts and percentages
-- **ROC Curves**: Multi-class receiver operating characteristic analysis
-- **Precision-Recall Curves**: Detailed PR analysis for each class
-- **Feature Correlation Matrix**: Understanding feature relationships
-- **Learning Curves**: Training performance analysis
-- **Feature Importance**: Rankings across different methods
-- **YOLO Weights Performance**: Speed and accuracy benchmarks
-- **Comprehensive Reports**: Detailed text reports with recommendations
-
-### Key Performance Metrics (Updated)
-
-| Metric Category | Values | Interpretation |
-|----------------|--------|----------------|
-| **Overall Accuracy** | **97.70%** | Outstanding classification performance |
-| **Porosity Precision** | **97.78%** | Extremely low false positive rate |
-| **Blowhole Recall** | **97.78%** | Excellent detection of actual blowholes |
-| **Matthews Correlation** | **0.954** | Near-perfect correlation quality |
-| **Feature Importance** | **Circularity** | Most discriminative geometric feature |
-| **Dataset Size** | **9,906 samples** | Large-scale validation |
-
-### **Threshold Optimization Results**
-
-- **Overlap Filtering**: 23% reduction in false positives
-- **Confidence Thresholds**: 8% improvement in precision  
-- **Multi-stage Pipeline**: 97% overall detection accuracy
-- **Processing Speed**: <3ms average inference per image
-
-## Configuration & Customization
-
-### Adjustable Parameters
-
-```python
-# In src/config.py - easily configurable parameters
-confidence_thresholds = {
-    'porosity': 0.1,     # Lower for sensitive small defect detection
-    'blowholes': 0.5,    # Higher for precision-critical applications  
-}
-
-# Feature extraction fine-tuning
-feature_extraction_params = {
-    'gaussian_blur_kernel': (5, 5),      # Noise reduction
-    'canny_low_threshold': 50,           # Edge detection sensitivity
-    'min_contour_area': 10,              # Minimum defect size
-}
-
-# Classification confidence for porosity/blowhole distinction
-classification_confidence_threshold = 0.7
-```
-
-### Performance Monitoring
-
-The system includes built-in performance tracking:
-- **Inference Time Monitoring**: Track detection speed
-- **Memory Usage Tracking**: Monitor resource consumption  
-- **Detection Results Logging**: Comprehensive result storage
-- **Automated Report Generation**: Regular performance summaries
 
 ## Getting Started with Your Data
 
