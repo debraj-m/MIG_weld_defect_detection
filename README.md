@@ -389,10 +389,9 @@ Quality Assessment → Accept/Reject Decision → Data Logging
 
 ## Contact & Support
 
-**Author**: Debraj Mukherjee 
-**Email**: [debrajm2204@gmail.com]  
-**LinkedIn**: [www.linkedin.com/in/debrajm]  
-**Project Link**: https://github.com/debraj-m/MIGWeld_Defect_Detection
+
+**Author**: Debraj Mukherjee  
+[✉️](mailto:debrajm2204@gmail.com) &nbsp; [🔗](https://www.linkedin.com/in/debrajm) &nbsp; [💻](https://github.com/debraj-m/MIGWeld_Defect_Detection)
 
 For technical support or collaboration inquiries, please open an issue on GitHub or contact directly.
 
