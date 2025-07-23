@@ -255,20 +255,6 @@ MIGWeld_Defect_Detection/
 - **Data Split**: 70% Training / 20% Validation / 10% Testing
 - **Augmentation**: Applied during training (rotation, scaling, color adjustment)
 
-### Class Distribution
-```yaml
-# data.yaml configuration
-path: ./dataset
-train: images/train
-val: images/val
-test: images/test
-
-nc: 2  # number of classes
-names:
-  0: Blowhole
-  1: Porosity
-```
-
 ## Quick Start Guide
 
 ### Prerequisites
