@@ -366,27 +366,6 @@ python src/train_classifier.py
 # Generate comprehensive metrics
 python scripts/run_all_metrics.py
 ```
-
-## Industrial Deployment Considerations
-
-### Real-time Processing Setup
-- **Hardware**: NVIDIA Jetson series for edge deployment
-- **Throughput**: ~300-500 images per minute on GPU
-- **Latency**: <50ms end-to-end processing time
-- **Accuracy**: Maintained >94% in production environments
-
-### Quality Control Integration
-```
-Manufacturing Line → Image Capture → Defect Detection → 
-Quality Assessment → Accept/Reject Decision → Data Logging
-```
-
-### Monitoring & Maintenance
-- **Model Drift Detection**: Monitor performance degradation
-- **Continuous Learning**: Retrain with new defect patterns
-- **Alert Systems**: Real-time notifications for critical defects
-- **Performance Analytics**: Track detection trends over time
-
 ## Contact & Support
 
 
