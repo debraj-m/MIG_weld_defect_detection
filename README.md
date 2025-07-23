@@ -1,4 +1,9 @@
+
 # MIG Weld Defect Detection
+
+**Dataset and Weights Download:**
+
+[Google Drive: MIG Weld Defect Dataset & Weights](https://drive.google.com/drive/folders/1tw9sXVZ1ClnnJujT1MRAhv3DdmBdpUjB?usp=sharing)
 
 A comprehensive multi-stage weld defect detection system that combines **YOLOv8 object detection** with **machine learning classification** for precise identification and classification of MIG welding defects. This project implements an advanced quality control solution that addresses the challenge of distinguishing between similar defect types, particularly porosity and blowholes.
 
