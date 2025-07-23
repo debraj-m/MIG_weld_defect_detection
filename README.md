@@ -2,7 +2,7 @@
 
 A comprehensive multi-stage weld defect detection system that combines **YOLOv8 object detection** with **machine learning classification** for precise identification and classification of MIG welding defects. This project implements an advanced quality control solution that addresses the challenge of distinguishing between similar defect types, particularly porosity and blowholes.
 
-## 🎯 Project Overview
+## Project Overview
 
 Industrial welding quality control requires both **detection** and **accurate classification** of defects. While traditional approaches struggle with similar-looking defects, this project implements a sophisticated two-stage pipeline:
 
@@ -10,15 +10,15 @@ Industrial welding quality control requires both **detection** and **accurate cl
 2. **Stage 2**: Feature-based ML classification with threshold filtering for precise defect type identification
 
 ### Key Innovations:
-- **Multi-stage detection pipeline** for improved accuracy
-- **Geometrical feature extraction** for similar defect disambiguation  
-- **Threshold-based filtering** with overlap analysis
-- **Comprehensive metrics and visualization** for model evaluation
-- **Configurable confidence thresholds** for different defect types
+- Multi-stage detection pipeline for improved accuracy
+- Geometrical feature extraction for similar defect disambiguation
+- Threshold-based filtering with overlap analysis
+- Comprehensive metrics and visualization for model evaluation
+- Configurable confidence thresholds for different defect types
 
-## 🔍 Methodology: Multi-Stage Detection Pipeline
+## Methodology: Multi-Stage Detection Pipeline
 
-### **🏗️ Hierarchical Detection Approach**
+### Hierarchical Detection Approach
 ```
 Input Weld Image → Weld Plate Detection → Weld Seam Localization → 
 Multi-Class Defect Detection → Feature Extraction → ML Classification → Final Output
@@ -48,7 +48,7 @@ Threshold Filtering → ML Classifier → Final Classification
 - **Geometric Differences**: Size, shape, and texture patterns differ significantly
 - **ML Classification**: Leverages 16 quantitative features for precise distinction
 
-## 🏷️ Defect Classes & Classification Challenge
+## Defect Classes & Classification Challenge
 
 The system implements a **hierarchical detection approach** with specialized focus on the critical challenge of **porosity vs blowhole disambiguation**:
 
@@ -67,7 +67,7 @@ The system implements a **hierarchical detection approach** with specialized foc
 | **Blowhole** | YOLO + ML Classifier | **Main Focus** | Large gas cavities, irregular shape |
 | **Spatter** | YOLO Detection | Individual Model | Scattered metal particles |
 
-### 🔬 **Critical Challenge: Porosity vs Blowhole Classification**
+### Critical Challenge: Porosity vs Blowhole Classification
 Since porosity and blowholes are visually similar (both being gas-related defects), we employ a **feature-based ML classifier** using **16 geometric and intensity features**:
 
 **Extracted Features (from defect_features_balanced.csv):**
@@ -94,16 +94,16 @@ names:
 ```
 
 
-## 🧩 Project Pipeline (Step-by-Step)
+## Project Pipeline (Step-by-Step)
 
-### **Stage 1: Data Preparation & Feature Engineering**
+### Stage 1: Data Preparation & Feature Engineering
 ```bash
 # Extract geometric and intensity features from annotated defects
 python src/extract_defect_features.py
 # Output: defect_features_balanced.csv with 16 features per defect
 ```
 
-### **Stage 2: ML Model Training**
+### Stage 2: ML Model Training
 ```bash
 # Fit scaler and label encoder for feature normalization
 python scripts/fit_scaler_labelencoder.py
@@ -113,14 +113,14 @@ python src/train_classifier.py
 # Output: Trained Random Forest classifier + evaluation metrics
 ```
 
-### **Stage 3: Hierarchical Detection Pipeline**
+### Stage 3: Hierarchical Detection Pipeline
 ```bash
 # Run complete detection pipeline
 python src/prediction_final.py
 # Pipeline: Plate → Seam → Defects → Feature Classification → Final Output
 ```
 
-### **Stage 4: Comprehensive Evaluation & Metrics**
+### Stage 4: Comprehensive Evaluation & Metrics
 ```bash
 # Generate detailed classifier metrics and visualizations
 python scripts/comprehensive_classifier_metrics.py
@@ -135,11 +135,11 @@ python scripts/evaluate_yolo_weights.py
 python scripts/run_all_metrics.py
 ```
 
-## 📊 **Classifier Performance Metrics**
+## Classifier Performance Metrics
 
 Our ML classifier achieves **exceptional accuracy** in distinguishing between porosity and blowholes:
 
-### **🎯 Actual Performance Results:**
+### Actual Performance Results:
 - **Overall Accuracy**: **97.70%** (Measured on 9,906 samples)
 - **Precision (Porosity)**: **97.78%** 
 - **Recall (Porosity)**: **97.62%**
@@ -150,7 +150,7 @@ Our ML classifier achieves **exceptional accuracy** in distinguishing between po
 - **Matthews Correlation**: **0.954** (Excellent correlation quality)
 - **Cohen's Kappa**: **0.954** (Near-perfect agreement)
 
-### **📈 Model Insights:**
+### Model Insights:
 ```
 Dataset Overview:
 • Total Samples: 9,906 defect instances
@@ -159,7 +159,7 @@ Dataset Overview:
 • Training Algorithm: Gradient Boosting Classifier (optimized)
 ```
 
-### **🔍 Confusion Matrix Analysis (Actual Results):**
+### Confusion Matrix Analysis (Actual Results):
 ```
                     Predicted
 Actual           blowhole  porosity   Total
@@ -170,7 +170,7 @@ Total              4,982    4,924    9,906
 Accuracy: 97.70% | Misclassification: 2.30%
 ```
 
-### **🏆 Feature Importance Ranking (Validated):**
+### Feature Importance Ranking (Validated):
 Based on comprehensive analysis of your actual model:
 1. **Circularity** - Most discriminative feature for shape analysis
 2. **Area** - Critical for size-based distinction  
@@ -181,7 +181,7 @@ Based on comprehensive analysis of your actual model:
 7. **Aspect Ratio** - Shape elongation measurement
 8. **LBP Uniformity** - Texture pattern analysis
 
-### **⚡ Threshold Filtering Performance:**
+### Threshold Filtering Performance:
 - **Pre-filtering Detections**: ~1,200+ initial YOLO detections
 - **Post-overlap Analysis**: ~950 filtered detections (-20.8%)
 - **Final ML Classifications**: ~900 confident predictions (-25% from initial)
@@ -210,37 +210,37 @@ MIGWeld_Defect_Detection/
 └── README.md              # Project documentation
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
-### **Deep Learning & Computer Vision**
+### Deep Learning & Computer Vision
 - **YOLOv8**: State-of-the-art object detection framework
 - **PyTorch**: Deep learning backend for model training
 - **OpenCV**: Computer vision operations and image processing
 - **Ultralytics**: YOLOv8 implementation and utilities
 
-### **Machine Learning & Data Science**
+### Machine Learning & Data Science
 - **Scikit-learn**: Classical ML algorithms (Random Forest, SVM, etc.)
 - **Pandas**: Data manipulation and analysis
 - **NumPy**: Numerical computations and array operations
 - **Joblib**: Model serialization and parallel processing
 
-### **Visualization & Analysis**
+### Visualization & Analysis
 - **Matplotlib**: Statistical plotting and visualization
 - **Seaborn**: Advanced statistical data visualization
 - **PIL/Pillow**: Image processing and manipulation
 
-### **Feature Engineering**
+### Feature Engineering
 - **SciPy**: Scientific computing and signal processing
 - **Scikit-image**: Advanced image processing algorithms
 - **Albumentations**: Image augmentation library
 
-### **Development Environment**
+### Development Environment
 - **Python 3.8+**: Core programming language
 - **Streamlit**: Web interface for model deployment
 - **Pathlib**: Modern path handling
 - **TQDM**: Progress bars for long-running operations
 
-## 📊 Dataset Details
+## Dataset Details
 
 ### Dataset Characteristics
 - **Total Images**: [Specify number of images]
@@ -263,15 +263,15 @@ names:
   1: Porosity
 ```
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
-### **Prerequisites**
+### Prerequisites
 - Python 3.8 or higher
 - CUDA-compatible GPU (recommended for training)
 - 8GB+ RAM
 - 10GB+ free disk space
 
-### **Installation**
+### Installation
 
 1. **Clone the repository**
    ```bash
@@ -298,9 +298,9 @@ names:
    python -c "from ultralytics import YOLO; print('✅ Installation successful!')"
    ```
 
-### **Quick Pipeline Execution**
+### Quick Pipeline Execution
 
-#### **1. Feature Extraction & Model Training**
+#### 1. Feature Extraction & Model Training
 ```bash
 # Extract geometric features from defect annotations
 python src/extract_defect_features.py
@@ -312,13 +312,13 @@ python scripts/fit_scaler_labelencoder.py
 python src/train_classifier.py
 ```
 
-#### **2. Run Complete Detection Pipeline**
+#### 2. Run Complete Detection Pipeline
 ```bash
 # Execute hierarchical detection on test images
 python src/prediction_final.py --image_path test_images/sample_weld.jpg
 ```
 
-#### **3. Generate Comprehensive Metrics**
+#### 3. Generate Comprehensive Metrics
 ```bash
 # Generate classifier performance metrics
 python scripts/comprehensive_classifier_metrics.py
@@ -330,7 +330,7 @@ python scripts/evaluate_yolo_weights.py
 python scripts/enhanced_metrics_visuals.py
 ```
 
-### **Configuration**
+### Configuration
 
 All model parameters are centralized in `src/config.py`:
 
@@ -351,47 +351,19 @@ feature_extraction_params = {
 ```
 
 
-## 🖼️ **Comprehensive Visual Results & Metrics**
+## Comprehensive Visual Results & Metrics
 
-### **🎯 Classifier Performance Visualizations (Generated)**
+### Classifier Performance Visualizations (Generated)
 
-#### 1. **Enhanced Confusion Matrix** 
-![Enhanced Confusion Matrix](results/comprehensive_confusion_matrix.png)
-*Detailed confusion matrix with counts and percentages for porosity/blowhole classification*
 
-#### 2. **Classification Report Heatmap**
-![Classification Report](results/classification_report_enhanced.png) 
-*Performance metrics heatmap showing precision, recall, and F1-scores*
+#### 1. Pore and Blowhole Example Images
+![Pore Example](results/pore_example.png)
+*Example of a detected pore defect*
 
-#### 3. **ROC Curves Analysis**
-![ROC Curves](results/roc_curves_enhanced.png)
-*Receiver Operating Characteristic curves demonstrating classifier discrimination*
+![Blowhole Example](results/blowhole_example.png)
+*Example of a detected blowhole defect*
 
-#### 4. **Precision-Recall Curves**
-![Precision-Recall](results/precision_recall_curves.png)
-*Precision-Recall analysis for optimal threshold selection*
-
-#### 5. **Comprehensive Feature Importance** 
-![Feature Importance](results/comprehensive_feature_importance.png)
-*Multi-method feature importance analysis (model-based, mutual information, correlation)*
-
-#### 6. **Feature Correlation Matrix**
-![Feature Correlation](results/feature_correlation_comprehensive.png)
-*Comprehensive correlation analysis between all 16 extracted features*
-
-#### 7. **Learning Curves Analysis**
-![Learning Curves](results/learning_curves_analysis.png)
-*Training vs validation performance curves for model optimization*
-
-#### 8. **Class Distribution**
-![Class Distribution](results/class_distribution.png)
-*Distribution analysis of blowhole vs porosity in training dataset*
-
-#### 9. **Performance Summary Dashboard**
-![Performance Summary](results/performance_summary.png)
-*Overall performance metrics summary across all evaluation criteria*
-
-### **YOLO Detection Weights Performance**
+### YOLO Detection Weights Performance
 
 | Model Weight | mAP@0.5 | Precision | Recall | Inference Speed (ms) | Model Size (MB) |
 |--------------|---------|-----------|--------|---------------------|-----------------|
@@ -403,66 +375,23 @@ feature_extraction_params = {
 | **excessive_reinforcement.pt** | 0.91 | 0.89 | 0.88 | 2.3 | 22.4 |
 | **spatter_defect.pt** | 0.87 | 0.84 | 0.86 | 2.1 | 22.4 |
 
-### **📊 Correlation Matrix Insights**
+### Correlation Matrix Insights
 The feature correlation analysis reveals:
 - **Circularity vs Compactness**: Strong positive correlation (0.76) 
 - **Area vs Fill_Ratio**: Moderate correlation (0.58)
 - **LBP_Uniformity vs Mean_Intensity**: Low correlation (0.23) - Independent features
 - **Aspect_Ratio vs Solidity**: Negative correlation (-0.42) - Shape complexity
 
-### **⚙️ Threshold Filtering Algorithm**
+### Threshold Filtering Algorithm
 Your sophisticated filtering approach:
 1. **Overlap Analysis**: IoU-based filtering to remove duplicate detections
 2. **Confidence Thresholding**: Per-model optimized confidence scores
 3. **Spatial Consistency**: Geometric validation of detection regions
 4. **Feature Quality**: Minimum area and aspect ratio constraints
 
-### **🚀 Recommended Additional Screenshots**
 
-To make your project presentation even more comprehensive, consider adding:
 
-#### **A. Sample Detection Results**
-```bash
-# Create a visualization showing:
-docs/sample_detections/
-├── input_weld_image.jpg           # Original weld image
-├── stage1_plate_detection.jpg     # Weld plate detected
-├── stage2_seam_detection.jpg      # Weld seam localized  
-├── stage3_defect_detection.jpg    # All defects detected
-└── final_classification.jpg       # With porosity/blowhole labels
-```
-
-#### **B. Feature Distribution Plots**
-```bash
-# Show how features differ between classes:
-docs/feature_analysis/
-├── circularity_distribution.png   # Histograms by class
-├── area_distribution.png          # Size differences
-├── intensity_patterns.png         # Brightness analysis
-└── texture_comparison.png         # LBP uniformity patterns
-```
-
-#### **C. Real-world Application Setup**
-```bash
-# Industrial deployment photos:
-docs/deployment/
-├── camera_setup.jpg              # Industrial camera installation
-├── processing_unit.jpg            # Edge computing hardware
-├── quality_control_station.jpg   # Integration with production line
-└── user_interface.jpg             # Operator dashboard
-```
-
-#### **D. Training Progress Visualization**
-```bash
-# Model development insights:
-docs/training_analysis/
-├── yolo_training_curves.png       # Loss curves for YOLO models
-├── classifier_training_history.png # ML model convergence
-├── hyperparameter_optimization.png # Grid search results
-└── cross_validation_results.png   # Model stability analysis
-```
-
-## 📈 Model Performance
+## Model Performance
 
 For a robust evaluation, track the following metrics:
 
@@ -506,9 +435,9 @@ Overall Accuracy: 97.70%
 ```
 
 
-## 📊 **Advanced Metrics & Analysis**
+## Advanced Metrics & Analysis
 
-### **Comprehensive Evaluation Suite**
+### Comprehensive Evaluation Suite
 
 Run all metrics generation with a single command:
 ```bash
@@ -525,7 +454,7 @@ This will generate:
 - **YOLO Weights Performance**: Speed and accuracy benchmarks
 - **Comprehensive Reports**: Detailed text reports with recommendations
 
-### **Key Performance Metrics (Updated)**
+### Key Performance Metrics (Updated)
 
 | Metric Category | Values | Interpretation |
 |----------------|--------|----------------|
@@ -543,9 +472,9 @@ This will generate:
 - **Multi-stage Pipeline**: 97% overall detection accuracy
 - **Processing Speed**: <3ms average inference per image
 
-## 🔧 **Configuration & Customization**
+## Configuration & Customization
 
-### **Adjustable Parameters**
+### Adjustable Parameters
 
 ```python
 # In src/config.py - easily configurable parameters
@@ -565,7 +494,7 @@ feature_extraction_params = {
 classification_confidence_threshold = 0.7
 ```
 
-### **Performance Monitoring**
+### Performance Monitoring
 
 The system includes built-in performance tracking:
 - **Inference Time Monitoring**: Track detection speed
@@ -573,9 +502,9 @@ The system includes built-in performance tracking:
 - **Detection Results Logging**: Comprehensive result storage
 - **Automated Report Generation**: Regular performance summaries
 
-## 🚀 **Getting Started with Your Data**
+## Getting Started with Your Data
 
-### **1. Prepare Your Dataset**
+### 1. Prepare Your Dataset
 ```bash
 # Organize your data in YOLO format
 Datasets/
@@ -590,14 +519,14 @@ Datasets/
     └── labels/
 ```
 
-### **2. Update Configuration**
+### 2. Update Configuration
 ```bash
 # Edit src/config.py with your model paths
 # Adjust confidence thresholds based on your requirements
 # Configure feature extraction parameters for your image quality
 ```
 
-### **3. Train and Evaluate**
+### 3. Train and Evaluate
 ```bash
 # Extract features from your annotated data
 python src/extract_defect_features.py
@@ -609,64 +538,45 @@ python src/train_classifier.py
 python scripts/run_all_metrics.py
 ```
 
-## 🏭 **Industrial Deployment Considerations**
+## Industrial Deployment Considerations
 
-### **Real-time Processing Setup**
+### Real-time Processing Setup
 - **Hardware**: NVIDIA Jetson series for edge deployment
 - **Throughput**: ~300-500 images per minute on GPU
 - **Latency**: <50ms end-to-end processing time
 - **Accuracy**: Maintained >94% in production environments
 
-### **Quality Control Integration**
+### Quality Control Integration
 ```
 Manufacturing Line → Image Capture → Defect Detection → 
 Quality Assessment → Accept/Reject Decision → Data Logging
 ```
 
-### **Monitoring & Maintenance**
+### Monitoring & Maintenance
 - **Model Drift Detection**: Monitor performance degradation
 - **Continuous Learning**: Retrain with new defect patterns
 - **Alert Systems**: Real-time notifications for critical defects
 - **Performance Analytics**: Track detection trends over time
 
-## 📈 **Future Enhancements & Research Directions**
+## Future Enhancements & Research Directions
 
-### **Planned Improvements**
+### Planned Improvements
 - **3D Analysis**: Integration with depth sensors for volume estimation
 - **Multi-modal Detection**: Combining RGB, thermal, and ultrasonic data
 - **Explainable AI**: Defect reasoning and confidence visualization
 - **Federated Learning**: Distributed training across multiple facilities
 
-### **Research Opportunities**
+### Research Opportunities
 - **Active Learning**: Semi-supervised learning for rare defects
 - **Domain Adaptation**: Cross-facility model transfer
 - **Uncertainty Quantification**: Confidence intervals for predictions
 - **Real-time Optimization**: Dynamic threshold adjustment
 
-## 📚 **Resources & Documentation**
+## Resources & Documentation
 
-### **Additional Screenshots for README**
-To make your project more comprehensive, consider adding:
 
-1. **Sample Detection Results**: Before/after images showing defect detection
-2. **Training Loss Curves**: YOLOv8 training progression charts
-3. **Feature Distribution Plots**: Histograms showing feature differences
-4. **Real-world Application Photos**: Industrial setup and deployment
-5. **User Interface Screenshots**: If you have a web interface
-6. **Performance Comparison Charts**: Comparing different approaches
 
-### **Recommended Additions**
-```bash
-# Create these additional visualizations
-docs/
-├── sample_detections/           # Example detection results
-├── training_curves/            # Model training progressions  
-├── feature_analysis/           # Feature engineering insights
-├── deployment_photos/          # Industrial setup images
-└── performance_comparisons/    # Benchmark results
-```
-
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -682,11 +592,11 @@ Contributions are welcome! Please follow these steps:
 - Update documentation for API changes
 - Ensure backward compatibility
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact & Support
+## Contact & Support
 
 **Author**: Debraj Mukherjee 
 **Email**: [debrajm2204@gmail.com]  
@@ -695,14 +605,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For technical support or collaboration inquiries, please open an issue on GitHub or contact directly.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Internship Organization**: [IIT Kharagpur]
 - **Ultralytics Team**: For the excellent YOLOv8 implementation
 - **PyTorch Community**: For the robust deep learning framework
 - **Industrial Partners**: For providing domain expertise and data
 
-## 📚 References
+## References
 
 1. Redmon, J., et al. (2016). "You Only Look Once: Unified, Real-Time Object Detection"
 2. Ultralytics YOLOv8 Documentation
