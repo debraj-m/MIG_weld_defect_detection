@@ -277,7 +277,7 @@ feature_extraction_params = {
 ![Feature Correlation](results/feature_correlation_comprehensive.png)
 *Correlation analysis between extracted features*
 
-#### 8. Performance Summary
+#### 3. Performance Summary
 ![Performance Summary](results/performance_summary.png)
 *Overall performance metrics summary*
 
