@@ -1,0 +1,33 @@
+================================================================================
+🔬 COMPREHENSIVE CLASSIFIER PERFORMANCE REPORT
+================================================================================
+📊 Dataset Overview:
+   • Total Samples: 13
+   • Classes: blowhole, porosity
+
+🎯 Overall Performance Metrics:
+   • Overall Accuracy: 0.9770 (97.70%)
+   • Macro Precision: 0.9770
+   • Macro Recall: 0.9770
+   • Macro F1-Score: 0.9770
+   • Matthews Correlation: 0.9540
+   • Cohen's Kappa: 0.9540
+
+📈 Per-Class Performance:
+   🔸 Blowhole:
+      - Precision: 0.9762
+      - Recall: 0.9778
+      - F1-Score: 0.9770
+
+   🔸 Porosity:
+      - Precision: 0.9778
+      - Recall: 0.9762
+      - F1-Score: 0.9770
+
+🔍 Model Interpretation:
+   • High precision indicates low false positive rate
+   • High recall indicates low false negative rate
+   • Matthews correlation measures overall quality
+   • Cohen's kappa accounts for chance agreement
+
+================================================================================
