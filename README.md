@@ -391,7 +391,10 @@ Quality Assessment → Accept/Reject Decision → Data Logging
 
 
 **Author**: Debraj Mukherjee  
-[✉️](mailto:debrajm2204@gmail.com) &nbsp; [🔗](https://www.linkedin.com/in/debrajm) &nbsp; [💻](https://github.com/debraj-m/MIGWeld_Defect_Detection)
+
+[<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" width="20" style="vertical-align:middle;"/> Gmail](mailto:debrajm2204@gmail.com) &nbsp; 
+[<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20" style="vertical-align:middle;"/> LinkedIn](https://www.linkedin.com/in/debrajm) &nbsp; 
+[<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" width="20" style="vertical-align:middle;"/> GitHub](https://github.com/debraj-m/MIGWeld_Defect_Detection)
 
 For technical support or collaboration inquiries, please open an issue on GitHub or contact directly.
 
