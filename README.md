@@ -393,13 +393,6 @@ feature_extraction_params = {
 ![Performance Summary](results/performance_summary.png)
 *Overall performance metrics summary*
 
-#### 9. Pore and Blowhole Example Images
-![Pore Example](results/pore_example.png)
-*Example of a detected pore defect*
-
-![Blowhole Example](results/blowhole_example.png)
-*Example of a detected blowhole defect*
-
 ### YOLO Detection Weights Performance
 
 | Model Weight | mAP@0.5 | Precision | Recall | Inference Speed (ms) | Model Size (MB) |
@@ -595,48 +588,6 @@ Quality Assessment → Accept/Reject Decision → Data Logging
 - **Alert Systems**: Real-time notifications for critical defects
 - **Performance Analytics**: Track detection trends over time
 
-## Future Enhancements & Research Directions
-
-### Planned Improvements
-- **3D Analysis**: Integration with depth sensors for volume estimation
-- **Multi-modal Detection**: Combining RGB, thermal, and ultrasonic data
-- **Explainable AI**: Defect reasoning and confidence visualization
-- **Federated Learning**: Distributed training across multiple facilities
-
-### Research Opportunities
-- **Active Learning**: Semi-supervised learning for rare defects
-- **Domain Adaptation**: Cross-facility model transfer
-- **Uncertainty Quantification**: Confidence intervals for predictions
-- **Real-time Optimization**: Dynamic threshold adjustment
-
-## Resources & Documentation
-
-### Dataset and Weights Download
-
-All datasets and model weights can be downloaded from the following Google Drive link:
-
-[Google Drive: MIG Weld Defect Dataset & Weights](https://drive.google.com/drive/folders/1tw9sXVZ1ClnnJujT1MRAhv3DdmBdpUjB?usp=sharing)
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`) 
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow PEP 8 coding standards
-- Add unit tests for new features
-- Update documentation for API changes
-- Ensure backward compatibility
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact & Support
 
 **Author**: Debraj Mukherjee 
@@ -645,21 +596,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Project Link**: https://github.com/debraj-m/MIGWeld_Defect_Detection
 
 For technical support or collaboration inquiries, please open an issue on GitHub or contact directly.
-
-## Acknowledgments
-
-- **Internship Organization**: [IIT Kharagpur]
-- **Ultralytics Team**: For the excellent YOLOv8 implementation
-- **PyTorch Community**: For the robust deep learning framework
-- **Industrial Partners**: For providing domain expertise and data
-
-## References
-
-1. Redmon, J., et al. (2016). "You Only Look Once: Unified, Real-Time Object Detection"
-2. Ultralytics YOLOv8 Documentation
-3. Industrial Welding Quality Standards (AWS D1.1)
-4. Computer Vision in Manufacturing: A Comprehensive Review
-
----
 
 *This project demonstrates the practical application of computer vision in industrial quality control, showcasing how AI can enhance manufacturing processes while maintaining high standards of safety and reliability.*
