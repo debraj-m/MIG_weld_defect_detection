@@ -574,7 +574,11 @@ Quality Assessment → Accept/Reject Decision → Data Logging
 
 ## Resources & Documentation
 
+### Dataset and Weights Download
 
+All datasets and model weights can be downloaded from the following Google Drive link:
+
+[Google Drive: MIG Weld Defect Dataset & Weights](https://drive.google.com/drive/folders/1tw9sXVZ1ClnnJujT1MRAhv3DdmBdpUjB?usp=sharing)
 
 ## Contributing
 
