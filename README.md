@@ -12,7 +12,7 @@ A comprehensive multi-stage weld defect detection system that combines **YOLOv8 
 Industrial welding quality control requires both **detection** and **accurate classification** of defects. While traditional approaches struggle with similar-looking defects, this project implements a sophisticated two-stage pipeline:
 
 1. **Stage 1**: Hierarchical YOLO detection (Weld Plate → Weld Seam → Initial Defect Detection)
-2. **Stage 2**: Feature-based ML classification with threshold filtering for precise defect type identification
+2. **Stage 2**: Feature-based Random Forest classification with threshold filtering for precise defect type identification
 
 ### Key Innovations:
 - Multi-stage detection pipeline for improved accuracy
@@ -26,7 +26,7 @@ Industrial welding quality control requires both **detection** and **accurate cl
 ### Hierarchical Detection Approach
 ```
 Input Weld Image → Weld Plate Detection → Weld Seam Localization → 
-Multi-Class Defect Detection → Feature Extraction → ML Classification → Final Output
+Multi-Class Defect Detection → Feature Extraction → Random Forest Classification → Final Output
 ```
 
 ### **Stage 1: Spatial Localization**
@@ -45,13 +45,14 @@ Individual YOLO models for each defect type:
 ### **Stage 3: Feature-Based Classification**
 ```
 Porosity/Blowhole Detections → Geometric Feature Extraction → 
-Threshold Filtering → ML Classifier → Final Classification
+Threshold Filtering → Random Forest Classifier → Final Classification
 ```
+
 
 **Why This Approach?**
 - **Visual Similarity**: Porosity and blowholes look very similar in images
 - **Geometric Differences**: Size, shape, and texture patterns differ significantly
-- **ML Classification**: Leverages 16 quantitative features for precise distinction
+- **Random Forest Classification**: Leverages 16 quantitative features for precise distinction
 
 ## Defect Classes & Classification Challenge
 
@@ -62,18 +63,18 @@ The system implements a **hierarchical detection approach** with specialized foc
 2. **Weld Seam Detection** → Locate actual weld seam
 3. **Multi-Class Defect Detection** → Detect 5 defect types:
    - Crack, Porosity, Excessive Reinforcement, Blowholes, Spatter
-4. **Feature-Based Classification** → ML classifier for porosity/blowhole distinction
+4. **Feature-Based Classification** → Random Forest classifier for porosity/blowhole distinction
 
 | Defect Type | Detection Method | Current Status | Key Characteristics |
 |-------------|------------------|----------------|---------------------|
 | **Crack** | YOLO Detection | Individual Model | Linear discontinuities, high aspect ratio |
-| **Porosity** | YOLO + ML Classifier | **Main Focus** | Small gas bubbles, high circularity |
+| **Porosity** | YOLO + Random Forest Classifier | **Main Focus** | Small gas bubbles, high circularity |
 | **Excessive Reinforcement** | YOLO Detection | Individual Model | Excess weld metal, large area |
-| **Blowhole** | YOLO + ML Classifier | **Main Focus** | Large gas cavities, irregular shape |
+| **Blowhole** | YOLO + Random Forest Classifier | **Main Focus** | Large gas cavities, irregular shape |
 | **Spatter** | YOLO Detection | Individual Model | Scattered metal particles |
 
 ### Critical Challenge: Porosity vs Blowhole Classification
-Since porosity and blowholes are visually similar (both being gas-related defects), we employ a **feature-based ML classifier** using **16 geometric and intensity features**:
+Since porosity and blowholes are visually similar (both being gas-related defects), we employ a **feature-based Random Forest classifier** using **16 geometric and intensity features**:
 
 **Extracted Features (from defect_features_balanced.csv):**
 ```
@@ -113,7 +114,7 @@ python src/extract_defect_features.py
 # Fit scaler and label encoder for feature normalization
 python scripts/fit_scaler_labelencoder.py
 
-# Train multi-class classifier for porosity/blowhole disambiguation  
+# Train Random Forest classifier for porosity/blowhole disambiguation  
 python src/train_classifier.py
 # Output: Trained Random Forest classifier + evaluation metrics
 ```
@@ -122,7 +123,7 @@ python src/train_classifier.py
 ```bash
 # Run complete detection pipeline
 python src/prediction_final.py
-# Pipeline: Plate → Seam → Defects → Feature Classification → Final Output
+# Pipeline: Plate → Seam → Defects → Random Forest Classification → Final Output
 ```
 
 ### Stage 4: Comprehensive Evaluation & Metrics
@@ -142,7 +143,7 @@ python scripts/run_all_metrics.py
 
 ## Classifier Performance Metrics
 
-Our ML classifier achieves **exceptional accuracy** in distinguishing between porosity and blowholes:
+Our Random Forest classifier achieves **exceptional accuracy** in distinguishing between porosity and blowholes:
 
 ### Actual Performance Results:
 - **Overall Accuracy**: **97.70%** (Measured on 9,906 samples)
@@ -189,7 +190,7 @@ Based on comprehensive analysis of your actual model:
 ### Threshold Filtering Performance:
 - **Pre-filtering Detections**: ~1,200+ initial YOLO detections
 - **Post-overlap Analysis**: ~950 filtered detections (-20.8%)
-- **Final ML Classifications**: ~900 confident predictions (-25% from initial)
+- **Final Random Forest Classifications**: ~900 confident predictions (-25% from initial)
 - **False Positive Reduction**: **67% improvement** in precision
 - **Processing Speed**: <3ms average per classification
 
@@ -313,7 +314,7 @@ python src/extract_defect_features.py
 # Train scaler and label encoder
 python scripts/fit_scaler_labelencoder.py
 
-# Train classifier for porosity/blowhole distinction
+# Train Random Forest classifier for porosity/blowhole distinction
 python src/train_classifier.py
 ```
 
@@ -325,7 +326,7 @@ python src/prediction_final.py --image_path test_images/sample_weld.jpg
 
 #### 3. Generate Comprehensive Metrics
 ```bash
-# Generate classifier performance metrics
+# Generate Random Forest classifier performance metrics
 python scripts/comprehensive_classifier_metrics.py
 
 # Evaluate YOLO weights performance
@@ -561,7 +562,7 @@ Datasets/
 # Extract features from your annotated data
 python src/extract_defect_features.py
 
-# Train the classifier 
+# Train the Random Forest classifier 
 python src/train_classifier.py
 
 # Generate comprehensive metrics
