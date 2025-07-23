@@ -13,17 +13,81 @@ Industrial welding quality control traditionally relies on manual inspection, wh
 
 ## 🔍 Defect Classes Detected
 
-The system identifies five critical MIG weld defect types:
+The system identifies the following MIG weld defect types (as used in `data.yaml` and model training):
 
-| Defect Type | Description | Impact |
-|-------------|-------------|---------|
-| **Crack** | Linear discontinuities in the weld metal | Structural weakness, potential failure |
-| **Excess Reinforcement** | Excessive weld metal above the base material | Stress concentration, aesthetic issues |
-| **Porosity** | Gas bubbles trapped in solidified weld | Reduced strength, corrosion susceptibility |
-| **Spatter** | Metal droplets expelled during welding | Surface contamination, poor appearance |
-| **Welding Seam** | Proper weld bead identification | Quality verification reference |
+| Class Index | Class Name            | Description                                      | Impact                                    |
+|-------------|----------------------|--------------------------------------------------|-------------------------------------------|
+| 0           | Crack                | Linear discontinuities in the weld metal          | Structural weakness, potential failure    |
+| 1           | Excess_Reinforcement | Excessive weld metal above the base material      | Stress concentration, aesthetic issues    |
+| 2           | Porosity             | Gas bubbles trapped in solidified weld            | Reduced strength, corrosion susceptibility|
+| 3           | Spatter              | Metal droplets expelled during welding            | Surface contamination, poor appearance    |
+| 4           | Welding_Seam         | Proper weld bead identification                   | Quality verification reference            |
 
-## 📁 Project Structure
+### Class Distribution
+```yaml
+# data.yaml configuration
+path: ./dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 5  # number of classes
+names:
+  0: Crack
+  1: Excess_Reinforcement
+  2: Porosity
+  3: Spatter
+  4: Welding_Seam
+```
+
+
+## 🧩 Project Pipeline (Step-by-Step)
+
+1. **Data Collection & Annotation**
+   - Collect weld images from industrial sources.
+   - Annotate images using tools like Roboflow or CVAT in YOLO format.
+   - Organize images and labels in `Datasets/` as per the structure below.
+
+2. **Feature Extraction**
+   - Extract geometric and intensity features from YOLO-labeled images.
+   - Run:
+     ```bash
+     python src/extract_defect_features.py
+     ```
+   - Output: `defect_features_balanced.csv` in the project root.
+
+3. **Fit Scaler and Label Encoder**
+   - Standardize features and encode class labels for ML models.
+   - Run:
+     ```bash
+     python scripts/fit_scaler_labelencoder.py
+     ```
+   - Output: `defect_scaler.joblib`, `defect_label_encoder.joblib` in `models/`.
+
+4. **Train Classifier**
+   - Train a machine learning classifier (Random Forest, SVM, etc.) on extracted features.
+   - Run:
+     ```bash
+     python src/train_classifier.py
+     ```
+   - Output: `defect_classifier.joblib` in `models/`.
+
+5. **Prediction & Inference**
+   - Use YOLOv8 for object detection and the trained classifier for defect type classification.
+   - Run:
+     ```bash
+     python src/prediction_final.py
+     ```
+   - Or use the provided scripts for batch/image inference.
+
+6. **Model Evaluation**
+   - Evaluate model performance using provided metrics and validation scripts.
+   - Visualize results with confusion matrix, ROC curves, and class-wise metrics.
+
+7. **Deployment**
+   - Deploy the trained model for real-time or batch inference (see Deployment Options below).
+
+---
 
 ```
 MIGWeld_Defect_Detection/
@@ -72,7 +136,12 @@ val: images/val
 test: images/test
 
 nc: 5  # number of classes
-names: ['Crack', 'Excess_Reinforcement', 'Porosity', 'Spatter', 'Welding_Seam']
+names:
+  0: Crack
+  1: Excess_Reinforcement
+  2: Porosity
+  3: Spatter
+  4: Welding_Seam
 ```
 
 ## 🚀 Getting Started
@@ -134,7 +203,45 @@ yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=pat
 yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=path/to/video.mp4
 ```
 
+
+## 🖼️ Visual Results & Metrics (Screenshots)
+
+To make your results more authentic and visually appealing, add screenshots of:
+
+- **Sample Detection Results**: Annotated images showing detected defects.
+- **Confusion Matrix**: Visual confusion matrix for model evaluation.
+- **Training Curves**: Loss, precision, recall, and mAP curves from training logs (e.g., from YOLOv8 or TensorBoard).
+- **Class-wise Metrics Table**: Screenshots of tables or plots for per-class performance.
+
+> **How to add screenshots:**
+> 1. Save your images (e.g., `results/detection_example.png`, `results/confusion_matrix.png`).
+> 2. Place them in a `results/` or `docs/` folder in your repo.
+> 3. Reference them in the README using Markdown:
+>    ```markdown
+>    ![Detection Example](results/detection_example.png)
+>    ![Confusion Matrix](results/confusion_matrix.png)
+>    ```
+
+
+Example (from this project):
+
+![Classifier Confusion Matrix](results/classifier_confusion_matrix.png)
+![Classifier Classification Report](results/classifier_classification_report.png)
+![Classifier ROC Curves](results/classifier_roc_curves.png)
+
 ## 📈 Model Performance
+
+For a robust evaluation, track the following metrics:
+
+- **Precision**: Fraction of correct positive predictions.
+- **Recall**: Fraction of actual positives correctly identified.
+- **F1-score**: Harmonic mean of precision and recall.
+- **mAP (mean Average Precision)**: Standard for object detection (mAP@0.5, mAP@0.5:0.95).
+- **Confusion Matrix**: Visualize true/false positives/negatives per class.
+- **Inference Speed**: Time per image/frame (ms).
+- **Class-wise Metrics**: Precision, recall, and mAP for each defect type.
+
+> **Tip:** Add your own results and update the table below after each experiment.
 
 ### Training Results
 - **Training Duration**: ~2-4 hours (depending on hardware)
@@ -163,7 +270,41 @@ Spatter            0.93        0.91     0.95
 Welding_Seam       0.89        0.88     0.92
 ```
 
-## 💻 Usage Examples
+
+## � How to Reproduce (End-to-End)
+
+1. **Extract Features**
+   ```bash
+   python src/extract_defect_features.py
+   ```
+2. **Fit Scaler & Encoder**
+   ```bash
+   python scripts/fit_scaler_labelencoder.py
+   ```
+3. **Train Classifier**
+   ```bash
+   python src/train_classifier.py
+   ```
+4. **Run Inference**
+   ```bash
+   python src/prediction_final.py
+   ```
+5. **(Optional) Analyze Features**
+   ```bash
+   python scripts/feature_analysis_script.py
+   ```
+
+---
+
+## 🛠️ Troubleshooting & Tips
+
+- **ModuleNotFoundError**: Make sure you run scripts from the project root or set `PYTHONPATH` accordingly.
+- **Path Issues**: All scripts use relative paths; do not move scripts out of their folders.
+- **CUDA Errors**: Ensure your GPU drivers and CUDA toolkit are installed and compatible with PyTorch.
+- **Large Files**: Models, weights, and datasets are git-ignored; download or generate them as needed.
+- **Reproducibility**: Set random seeds in your scripts for consistent results.
+
+---
 
 ### Python API Usage
 ```python

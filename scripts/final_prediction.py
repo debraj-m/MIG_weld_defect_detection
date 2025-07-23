@@ -1,9 +1,13 @@
 import cv2
 from ultralytics import YOLO
 
+
 # === CONFIG ===
-image_path = r"C:\Users\debra\Desktop\IMG_3629_block_0_1_png_jpg.rf.08b179ce07867936aa212c4498fb6707.jpg"  # Replace with your test image
-defect_model_path = r"C:\Users\debra\Downloads\best (16).pt"
+# Update these paths as needed for your test images and model weights
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.abspath(os.path.join(BASE_DIR, '../test_images/Experiment Photos/PXL_20250525_094459478.MP.jpg'))  # Example image
+defect_model_path = os.path.abspath(os.path.join(BASE_DIR, '../weights/weldingPlate.pt'))  # Example model
 CONF_THRESHOLD = 0.25 # 🔧 Tuned confidence threshold
 IOU_THRESHOLD = 0.7   # 🔧 Tuned NMS IoU threshold
 
