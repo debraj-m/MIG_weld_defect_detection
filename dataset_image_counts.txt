@@ -1,0 +1,15 @@
+blowhole_dataset:
+  train: 1833 images
+  valid: 175 images
+crack_dataset:
+  train: 1362 images
+  valid: 115 images
+ExcessiveReinforcement_dataset:
+  train: 879 images
+  valid: 122 images
+porosity_dataset:
+  train: 1734 images
+  valid: 145 images
+spatter_dataset:
+  train: 690 images
+  valid: 100 images
